@@ -1,45 +1,45 @@
-<?php
+	<?php
 
-include 'AmoEnums.php';
-include 'AmoAPI.php';
+	include 'AmoEnums.php';
+	include 'AmoAPI.php';
 
-header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Origin: *");
 
-/*
-$_POST = array(
-    'method' => 'make_csv',
-    'lead_ids' => array(7238951, 7209515),
-    'subdomain' => 'leprosy93',
-    'user_login' => 'leprosy93@mail.ru',
-    'user_hash' => '4e0a9489dfe355d6ecf0687e00b625452afba1e9'
-);
- */
-if (!isset($_POST['method'])){
-    die('no method');
-}
+	/*
+	$_POST = array(
+	    'method' => 'make_csv',
+	    'lead_ids' => array(7238951, 7209515),
+	    'subdomain' => 'leprosy93',
+	    'user_login' => 'leprosy93@mail.ru',
+	    'user_hash' => '4e0a9489dfe355d6ecf0687e00b625452afba1e9'
+	);
+	 */
+	if (!isset($_POST['method'])){
+	    die('no method');
+	}
 
-$csv_dir = __DIR__ . '/csvs';
+	$csv_dir = __DIR__ . '/csvs';
 
-switch ($_POST['method']){
-case 'make_csv':
-    if(!isset($_POST['lead_ids'])){
-	die('bad params');
-    }		
-    $lead_ids = $_POST['lead_ids'];
-    $subdomain = $_POST['subdomain'];
-    $user_login = $_POST['user_login'];
-    $user_hash = $_POST['user_hash'];
-    
-    $amo = new AmoAPI($user_login, $user_hash, $subdomain, 'cookie', FALSE);
-    if (!$amo->auth()){
-	    die("Can't auth!!\n");
-    }
-    $leads = $amo->get_leads_by_id($lead_ids);
-    if (!$leads){
-	die("got no leads");
-    }
-    do {
-	$file_name = "{$csv_dir}/" . md5(rand(0, 1000000)) . ".csv";
+	switch ($_POST['method']){
+	case 'make_csv':
+	    if(!isset($_POST['lead_ids'])){
+		die('bad params');
+	    }		
+	    $lead_ids = $_POST['lead_ids'];
+	    $subdomain = $_POST['subdomain'];
+	    $user_login = $_POST['user_login'];
+	    $user_hash = $_POST['user_hash'];
+	    
+	    $amo = new AmoAPI($user_login, $user_hash, $subdomain, 'cookie', FALSE);
+	    if (!$amo->auth()){
+		    die("Can't auth!!\n");
+	    }
+	    $leads = $amo->get_leads_by_id($lead_ids);
+	    if (!$leads){
+		die("got no leads");
+	    }
+	    do {
+		$file_name = "{$csv_dir}/" . uniqid() . ".csv";
     } while (file_exists($file_name));
 
     $file = fopen($file_name, 'w');

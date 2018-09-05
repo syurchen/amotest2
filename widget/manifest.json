@@ -1,0 +1,43 @@
+{
+    "widget":{
+            "name": "widget.name",
+            "description": "widget.description",
+            "short_description": "widget.short_description",
+            "code": "yurc1",
+            "secret_key": "547309d0ba9ea361eaefff61600f0f234e24811e146b5486ec51fc818c402985",
+            "version": "1.0.1",
+            "interface_version": 2,
+            "init_once": false,
+            "locale":[
+                    "ru",
+                    "en"
+                    ],
+            "installation": true
+            },
+    "locations":[
+            "llist-0",
+            "settings"
+            ],
+    "settings":{
+                "login":{
+                        "name": "settings.login",
+                        "type": "text",
+                        "required": true
+                        },
+                "api_key":{
+                        "name": "settings.api_key",
+                        "type": "text",
+                        "required": true
+                        },
+                "subdomain":{
+                        "name": "settings.subdomain",
+                        "type": "text",
+                        "required": true
+                        },
+                "url":{
+                        "name": "settings.url",
+                        "type": "text",
+                        "required": true
+                        }
+            }
+}

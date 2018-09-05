@@ -1,0 +1,13 @@
+{
+    "widget":{
+        "name":"MyWidget",
+        "short_description":"Short description",
+        "description":"Full description"
+    },
+    "settings":{
+        "login":"User login(email)",
+        "api_key":"API key",
+        "subdomain":"Subdomain",
+        "url":"Server url. like http://127.0.0.1/amotest/handle.php"
+    }
+}
